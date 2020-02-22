@@ -41,6 +41,26 @@ export class HomePage {
   ];
   public listaFiltrada = [];
 
-  constructor() { }
+  constructor() {
+    this.resetarLista();
+  }
 
+  public resetarLista() {
+    this.listaFiltrada = this.listaPokemons;
+  }
+
+  public buscarPokemon(evento: any) {
+    let busca = evento.target.value;
+
+    this.resetarLista();
+
+    if (busca && busca.trim() != '') {
+      this.listaFiltrada = this.listaFiltrada.filter(dados => {
+        if ((dados.nome.toLowerCase().indexOf(busca.toLowerCase()) > -1) || (dados.numero.toLowerCase().indexOf(busca.toLowerCase()) > -1)) {
+          return true;
+        }
+        return false;
+      })
+    }
+  }
 }
